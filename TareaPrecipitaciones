@@ -1,1 +1,34 @@
+from xlrd import xlrd
+from Array3D import Array3D
 
+data = Array3D( 12, 32, 34 )
+continuar = True
+
+for anio in range(1985,2019):
+    archivo=xlrd.open_workbook(filename="./Precipitacion/"+str(anio)+'Precip.xls')
+    hoja=archivo.sheet_by_index(0)
+    for estado in range(2,34):
+        for mes in range(1,13):
+            #print(f"{(anio - 1985)}, {(estado - 2)}, {(mes - 1)}")
+            data.set_item( (anio - 1985), (estado - 2), (mes - 1),"%.2f" % hoja.cell_value(estado,mes))
+
+print("\nEstados:\n\n1.Aguascalientes\n2.Baja" +
+        " California\n3.Baja California Sur\n4.Campeche\n5.Coahuila\n6.Colima\n" +
+        "7.Chiapas\n8.Chihuahua\n9.Distrito Federal\n10.Durango\n11.Guanajuato\n" +
+        "12.Guerrero\n13.Hidalgo\n14.Jalisco\n15.Estado de Mexico\n16.Michoacan\n" +
+        "17.Morelos\n18.Nayarit\n19.Nuevo Leon\n20.Oaxaca\n21.Puebla\n22.Queretaro\n" +
+        "23.Quintana Roo\n24.San Luis Potosi\n25.Sinaloa\n26.Sonora\n27.Tabasco\n" +
+        "28.Tamaulipas\n29.Tlaxcala\n30.Veracruz\n31.Yucatan\n32.Zacatecas\n" +
+        "33.Nacional")
+while continuar:
+    try:
+        continuar = False
+        estado = int(input("\nIngrese el número correspondiente al estado deseado: "))
+        anio=int(input("año(1985-2019)?: "))
+        mes=int(input("mes(1-12)?: "))
+
+        print(f"\nEl promedio de centímetros cúbicos de lluvia fue de: {data.get_item((anio-1985), (estado-1), (mes-1))}")
+        continuar = bool(int(input("¿Desea realizar otra consulta? (1: Si | 0: No):")))
+    except:
+        continuar = True
+        print("\nIntente nuevamente")
