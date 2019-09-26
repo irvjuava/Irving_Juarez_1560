@@ -19,11 +19,12 @@ print("\nConsulta:\n\n1.Aguascalientes\n2.Baja" +
         "23.Quintana Roo\n24.San Luis Potosi\n25.Sinaloa\n26.Sonora\n27.Tabasco\n" +
         "28.Tamaulipas\n29.Tlaxcala\n30.Veracruz\n31.Yucatan\n32.Zacatecas\n" +
         "33.Nacional")
-while continuar:
-        continuar = False
+while menu:
+        menu = False
         estado = int(input("\n¿qué estado desea consultar?: "))
         anio=int(input("Año: "))
         mes=int(input("Mes: "))
 
         print(f"\nEl promedio de centímetros cúbicos de lluvia fue de: {data.get_item((anio-1985), (estado-1), (mes-1))}")
-        
+        menu = bool(int(input("¿quieres buscar nuevamente? (1: Si | 0: No):")))
+
