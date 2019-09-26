@@ -1,0 +1,49 @@
+class Array3D:
+    def __init__( self , rows , cols , depth):
+        self.__rows = rows
+        self.__cols = cols
+        self.__depth = depth
+        self.__data = []
+        for d in range( self.__depth ):
+            aux = []
+            for c in range(self.__cols):
+                aux2 = []
+                for r in range(self.__rows):
+                    aux2.append(None)
+                aux.append(aux2)
+            self.__data.append(aux)
+
+    def get_num_rows( self ):
+        return self.__rows
+
+    def get_num_cols( self ):
+        return self.__cols
+
+    def get_num_depth( self ):
+        return self.__depth
+
+    def set_item( self, d, c, r, value ):
+        self.__data[d][c][r] = value
+
+    def get_item( self, d, c, r ):
+        return self.__data[d][c][r]
+
+    def clearing( self, value ):
+        for d in range(self.__depth):
+            for c in range(self.__cols):
+                for r in range(self.__rows):
+                    self.set_item( d, c, r, value)
+
+
+    def to_string( self ):
+        print(self.__data)
+
+
+def main():
+    a3d = Array3D(4,3,2)
+    a3d.to_string()
+    print(a3d.get_num_rows())
+    a3d.clearing(0)
+    a3d.to_string()
+    
+main()
