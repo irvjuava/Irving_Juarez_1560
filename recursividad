@@ -1,6 +1,6 @@
 def getSum(l):
     if not l:
-        return 0  # End of recursion
+        return 0  
     else:
         return l[0] + getSum(l[1:])
 def main():
