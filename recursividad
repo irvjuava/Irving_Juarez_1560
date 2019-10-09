@@ -1,0 +1,9 @@
+def getSum(l):
+    if not l:
+        return 0  # End of recursion
+    else:
+        return l[0] + getSum(l[1:])
+def main():
+    l = [3,5,2,4]
+    print( getSum( l ) )
+main()
