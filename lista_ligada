@@ -1,0 +1,79 @@
+class Nodo:
+    def __init__( self, value, siguiente = None ):
+        self.data = value
+        self.next = siguiente
+
+#ADT Linked List
+class Linked_List:
+    def __init__( self ):
+        self.head = None
+
+    def is_empty( self ):
+        return self.head == None
+
+    def get_tail( self ):
+        cur_node = self.head
+        while cur_node.next != None:
+            cur_node = cur_node.next
+        return cur_node
+
+    def append( self, value ):
+        if self.is_empty():
+            self.head = Nodo( value )
+        else:
+            self.get_tail().next = Nodo( value )
+
+    def prepend( self, value ):
+        self.head = Nodo( value, self.head )
+        
+    def add_before( self, ref_value, value ):
+        cur_node = self.head
+        while cur_node.next.data != ref_value:
+            cur_node = cur_node.next
+        cur_node.next = Nodo(value, cur_node.next)
+
+    def add_after( self, ref_value, value ):
+        cur_node = self.head
+        while cur_node.data != ref_value:
+            cur_node = cur_node.next
+        cur_node.next = Nodo(value, cur_node.next)
+        
+    def transversal( self ):
+        cur_node = self.head
+        while cur_node.next != None:
+            print(cur_node.data, '-> ', end = '')
+            cur_node = cur_node.next
+        print(cur_node.data)
+
+    def remove( self, value ):
+        cur_node = self.head
+        while cur_node.next.data != value:
+            cur_node = cur_node.next
+        cur_node.next = cur_node.next.next
+        
+    def pop( self ):
+        poped = self.get_tail()
+        cur_node = self.head
+        while cur_node.next.next != None:
+            cur_node = cur_node.next
+        cur_node.next = None
+        return poped
+
+lista = Linked_List()
+print(f"¿La lista está vacía?: {lista.is_empty()}")
+lista.append(10)
+lista.append(20)
+lista.append(30)
+lista.append(40)
+lista.append(50)
+lista.transversal()
+print(f"La cola de la lista es: {lista.get_tail().data}")
+lista.prepend(5)
+lista.transversal()
+lista.add_before(30, 25)
+lista.transversal()
+lista.add_after(30, 35)
+lista.transversal()
+lista.remove(25)
+lista.transversal()
+print(lista.pop().data)
